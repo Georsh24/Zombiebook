@@ -23,6 +23,21 @@ router.get("/",(req, res, next) => {
     });
 });
 
+
+router.get("/zombies/:username",(req, res, next) => {
+    Zombie.findOne({ username: req.params.username}, (err,zombie) =>{
+        if(err){
+            return next(err);
+        }
+        if (!zombie){
+            return next (404);
+
+        }
+        res.render("profile",{zombie: zombie});
+    });
+});
+
+
 router.get("/signup", (req,res) => {
     res.render("signup");
 });
@@ -43,6 +58,8 @@ router.post("/signup", (req,res,next) => {
             username: username,
             password: password
         });
+
+
         newZombie.save(next);
         return res.redirect("/");
     });
