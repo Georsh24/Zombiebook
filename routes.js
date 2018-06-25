@@ -45,6 +45,16 @@ router.get("/zombies/:username",(req, res, next) => {
     });
 });
 
+router.get("/login", (req,res) => {
+    res.render("login");
+});
+
+router.post("/login", passport.authenticate("login", {
+    successRedirect:"/",
+    failureRedirect: "/login",
+    failureFlash: true
+}));
+
 router.get("/armas",(req, res, next) => {
         Arma.find()
         .exec((err, armas) => {
