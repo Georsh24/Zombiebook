@@ -128,4 +128,13 @@ router.post("/regarmas", (req,res,next) => {
     });
 });
 
+router.get("/logout",( req, res) => {
+    req.logout();
+    res.redirect("/");
+})
+
+router.get("/edit",(req, res) => {
+    res.render("edit");
+})
+
 module.exports = router;

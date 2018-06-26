@@ -14,7 +14,7 @@ module.exports = () => {
     });
 };
 
-passport.use("login", new LocalStrategy(function(usename, password, done){
+passport.use("login", new LocalStrategy(function(username, password, done){
 Zombie.findOne({username: username}, function(err, zombie){
     if (err){
     return done(err);
@@ -32,7 +32,7 @@ zombie.checkPassword(password, (err, isMatch) =>{
          return done(null, zombie)
 
 }else{
-    return done(null, false{
+    return done(null, false, {
         message: "La contraseña no es valida"})
     }
 })
